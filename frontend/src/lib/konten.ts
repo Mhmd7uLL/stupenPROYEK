@@ -185,6 +185,37 @@ export async function hapusStrukturApi(id: string): Promise<void> {
   await apiFetch(`/api/struktur-jabatan/${id}`, { metode: "DELETE", token: ambilToken() });
 }
 
+// ============================ VISI MISI ============================
+
+export type JenisVisiMisi = "visi" | "misi";
+
+// null berarti isinya belum pernah diisi (barisnya tidak ada di database)
+export type DataVisiMisi = Record<JenisVisiMisi, string | null>;
+
+export const VISI_MISI_KOSONG: DataVisiMisi = { visi: null, misi: null };
+
+export async function muatVisiMisi(): Promise<DataVisiMisi> {
+  return apiFetch<DataVisiMisi>("/api/visi-misi");
+}
+
+// Baris pertama lewat POST (tombol Tambah), sesudahnya lewat PUT (tombol Ubah)
+export async function simpanVisiMisi(
+  jenis: JenisVisiMisi,
+  isi: string,
+  sudahAda: boolean,
+): Promise<string> {
+  const hasil = await apiFetch<{ jenis: JenisVisiMisi; isi: string }>(`/api/visi-misi/${jenis}`, {
+    metode: sudahAda ? "PUT" : "POST",
+    body: { isi },
+    token: ambilToken(),
+  });
+  return hasil.isi;
+}
+
+export async function hapusVisiMisiApi(jenis: JenisVisiMisi): Promise<void> {
+  await apiFetch(`/api/visi-misi/${jenis}`, { metode: "DELETE", token: ambilToken() });
+}
+
 // ============================= PENDUDUK =============================
 
 interface PendudukApi {

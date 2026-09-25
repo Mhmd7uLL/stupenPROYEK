@@ -40,6 +40,16 @@ export interface StrukturJabatan {
     updated_at: Date;
 }
 
+// Lihat migrations/005_visi_misi.sql. Satu baris per jenis.
+export const JENIS_VISI_MISI = ["visi", "misi"] as const;
+export type JenisVisiMisi = (typeof JENIS_VISI_MISI)[number];
+
+export interface VisiMisi {
+    jenis: JenisVisiMisi;
+    isi: string;
+    updated_at: Date;
+}
+
 export interface Penduduk {
     id: number;
     laki_laki: number;

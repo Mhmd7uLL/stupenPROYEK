@@ -1,4 +1,11 @@
-import { JENIS_KABAR, TINGKAT_JABATAN, type JenisKabar, type TingkatJabatan } from "../types.js";
+import {
+    JENIS_KABAR,
+    JENIS_VISI_MISI,
+    TINGKAT_JABATAN,
+    type JenisKabar,
+    type JenisVisiMisi,
+    type TingkatJabatan,
+} from "../types.js";
 import { KesalahanInput } from "./kesalahan.js";
 
 // Batas kolom INTEGER (int4) PostgreSQL. Angka di atas ini dicegat di sini,
@@ -64,6 +71,13 @@ export function ambilJenisKabar(nilai: unknown): JenisKabar {
         return nilai as JenisKabar;
     }
     throw new KesalahanInput("Kolom jenis harus 'berita' atau 'pengumuman'");
+}
+
+export function ambilJenisVisiMisi(nilai: unknown): JenisVisiMisi {
+    if (typeof nilai === "string" && (JENIS_VISI_MISI as readonly string[]).includes(nilai)) {
+        return nilai as JenisVisiMisi;
+    }
+    throw new KesalahanInput("Jenis harus 'visi' atau 'misi'");
 }
 
 // Tingkat pada struktur jabatan: 1, 2, atau 3.

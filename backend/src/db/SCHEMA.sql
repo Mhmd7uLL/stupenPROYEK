@@ -20,6 +20,7 @@
 --                           admin dan penduduk hanya boleh satu baris;
 --                           kolom waktu NOT NULL
 --   004_batas_penduduk.sql  CHECK penduduk laki_laki/perempuan <= 1.000.000
+--   005_visi_misi.sql       tabel visi_misi (satu baris per jenis: visi/misi)
 
 -- =========================================================
 -- 1. TABEL ADMIN (Login) - hanya 1 admin pengelola

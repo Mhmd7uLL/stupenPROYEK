@@ -9,6 +9,7 @@ import kabarRouter from "./routes/kabar.js";
 import unggahRouter from "./routes/unggah.js";
 import pendudukRouter from "./routes/penduduk.js";
 import strukturJabatanRouter from "./routes/strukturJabatan.js";
+import visiMisiRouter from "./routes/visiMisi.js";
 
 const app = express();
 const PORT = Number(process.env.PORT) || 5000;
@@ -68,6 +69,7 @@ app.use("/api/unggah", unggahRouter);
 app.use("/api/kabar", kabarRouter);
 app.use("/api/struktur-jabatan", strukturJabatanRouter);
 app.use("/api/penduduk", pendudukRouter);
+app.use("/api/visi-misi", visiMisiRouter);
 
 // Dua middleware ini harus paling bawah, setelah semua rute terdaftar
 app.use(rute404);

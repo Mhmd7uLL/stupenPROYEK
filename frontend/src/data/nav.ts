@@ -10,6 +10,5 @@ export const NAV: NavItem[] = [
       { label: "Visi Misi", path: "/visi-misi" },
     ],
   },
-  { label: "Struktur Jabatan", path: "/struktur" },
-  { label: "Pelayanan", path: "/pelayanan" },
+  { label: "Struktur Jabatan", path: "/struktur" }
 ];

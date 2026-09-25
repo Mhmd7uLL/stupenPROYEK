@@ -66,6 +66,12 @@ export default function AdminDashboard() {
         >
           Ubah Statistik Penduduk
         </Link>
+        <Link
+          to="/admin/visi-misi"
+          className="rounded-md border border-garis bg-white px-4 py-2.5 text-[14px] font-medium text-tinta no-underline hover:border-sawah"
+        >
+          Kelola Visi &amp; Misi
+        </Link>
       </div>
     </div>
   );

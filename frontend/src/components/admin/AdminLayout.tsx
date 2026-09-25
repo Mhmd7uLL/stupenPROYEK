@@ -7,6 +7,7 @@ const MENU = [
   { label: "Berita & Pengumuman", to: "/admin/kabar", end: false },
   { label: "Struktur Jabatan", to: "/admin/struktur", end: false },
   { label: "Statistik Penduduk", to: "/admin/penduduk", end: false },
+  { label: "Visi & Misi", to: "/admin/visi-misi", end: false },
   { label: "Akun Admin", to: "/admin/akun", end: false },
 ];
 

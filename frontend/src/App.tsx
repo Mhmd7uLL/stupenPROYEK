@@ -18,6 +18,7 @@ import TambahBerita from "./pages/admin/TambahBerita";
 import AdminStruktur from "./pages/admin/AdminStruktur";
 import AdminPenduduk from "./pages/admin/AdminPenduduk";
 import AdminAkun from "./pages/admin/AdminAkun";
+import AdminVisiMisi from "./pages/admin/AdminVisiMisi";
 
 export default function App() {
   const location = useLocation();
@@ -53,6 +54,7 @@ export default function App() {
           <Route path="kabar/edit/:id" element={<TambahBerita />} />
           <Route path="struktur" element={<AdminStruktur />} />
           <Route path="penduduk" element={<AdminPenduduk />} />
+          <Route path="visi-misi" element={<AdminVisiMisi />} />
           <Route path="akun" element={<AdminAkun />} />
         </Route>
       </Routes>
