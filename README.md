@@ -11,7 +11,7 @@ Sistem Informasi Kelurahan adalah proyek web yang dibuat untuk menghadirkan info
 1. Public User:
 - Landing page yang informatif dan modern
 - Akses profil, informasi geografis & wilayah, struktur jabatan
-- Akses berita/kabar dengan detail artikel
+- Akses berita & pengumuman dengan detail artikel
 
 2. Admin:
 - Mengelola Berita & pengumuman, Visi & Misi, Struktur Jabatan
