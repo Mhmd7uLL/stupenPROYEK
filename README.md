@@ -8,39 +8,22 @@ Sistem Informasi Kelurahan adalah proyek web yang dibuat untuk menghadirkan info
 
 ## Fitur
 
+1. Public User:
 - Landing page yang informatif dan modern
-- Halaman profil organisasi dan visi misi
-- Informasi geografis dan wilayah
-- Struktur jabatan dan organisasi
-- Daftar layanan masyarakat
+- Halaman profil, informasi geografis & wilayah, berita & pengumuman masyarakat, struktur jabatan
 - Halaman berita/kabar dengan detail artikel
-- Panel admin untuk mengelola:
-  - berita/kabar
-  - struktur organisasi
-  - data penduduk
-- Routing berbasis React untuk navigasi yang cepat
-- API backend sederhana berbasis Express untuk kebutuhan data dan integrasi
+
+2. Admin Dashboard:
+- Mengelola Berita & pengumuman, Visi & Misi, Struktur Jabatan
+- Mengelola sandi & email admin (CRUD)
 
 ## Tech Stack
 
-### Frontend
-- React + TypeScript
-- Vite
-- React Router DOM
-- Tailwind CSS
-
-### Backend
-- Node.js
-- Express.js
-- TypeScript
-
-## Database
-- Soon...
-
-### Tools
-- npm
-- ESLint
-- TypeScript Compiler
+1. Language: TypeScript
+2. Frontend: React, Tailwind CSS
+3. Backend: Node + Express
+4. Database: PostgreSQL
+5. Tools: Git, npm, ESLint, Typescript Compiler
 
 ## Cara Menjalankan Frontend dan Backend
 
@@ -105,17 +88,11 @@ http://localhost:5000
 Contoh:
 
 ```bash
-git checkout -b feature/nama-fitur
+git switch -C feature/nama-fitur
 git add .
 git commit -m "feat: menambahkan fitur X"
 git push origin feature/nama-fitur
 ```
-
-## Kontributor
-
-- Julian
-- Fathur
-- Daffa
 
 ## Lisensi
 
