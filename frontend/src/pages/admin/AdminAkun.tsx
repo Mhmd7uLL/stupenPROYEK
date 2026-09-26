@@ -30,7 +30,7 @@ export default function AdminAkun() {
         periksa daftar perangkat di bawah kalau ada yang tidak Anda kenali.
       </p>
 
-      <div className="flex max-w-[640px] flex-col gap-6">
+      <div className="flex max-w-160 flex-col gap-6">
         <FormPassword />
         <FormEmail emailSekarang={admin.email} />
         <DaftarPerangkat />

@@ -39,7 +39,7 @@
 
 @layer components {
   .wrap {
-    @apply mx-auto max-w-[1120px] px-5;
+    @apply mx-auto max-w-280 px-5;
   }
 
   /* Notifikasi admin: muncul dengan geser turun singkat, lihat

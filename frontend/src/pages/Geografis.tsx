@@ -44,7 +44,7 @@ export default function Geografis() {
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
           allowFullScreen
-          className="aspect-[4/3] w-full rounded-lg border border-garis bg-kabut"
+          className="aspect-4/3 w-full rounded-lg border border-garis bg-kabut"
         />
       </div>
 

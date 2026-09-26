@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo.webp";
 import { login } from "../../lib/auth";
 
 export default function Login() {
@@ -10,6 +10,7 @@ export default function Login() {
   const [sandi, setSandi] = useState("");
   const [error, setError] = useState("");
   const [mengirim, setMengirim] = useState(false);
+  const [tampilkanSandi, setTampilkanSandi] = useState(false);
 
   // Halaman yang tadi ingin dibuka sebelum dialihkan ke login (diisi AdminGuard)
   const tujuan = (location.state as { dari?: string } | null)?.dari ?? "/admin";
@@ -54,7 +55,10 @@ export default function Login() {
               </p>
             </Link>
           </div>
-          <form className="flex flex-col items-center" onSubmit={(e) => void submit(e)}>
+          <form
+            className="flex flex-col items-center"
+            onSubmit={(e) => void submit(e)}
+          >
             <div className="flex flex-col font-medium">
               <label className="text-xl">Email</label>
               <input
@@ -69,15 +73,27 @@ export default function Login() {
             <div className="flex flex-col font-medium">
               <label className="text-xl">Sandi</label>
               <input
-                type="password"
+                type={tampilkanSandi ? "text" : "password"}
                 value={sandi}
                 autoComplete="current-password"
                 disabled={mengirim}
                 onChange={(e) => setSandi(e.target.value)}
                 className="rounded-lg bg-white w-105 py-3 px-5 border border-abu disabled:opacity-60"
               ></input>
+              <label className="mt-2 flex items-center gap-2 text-sm font-normal cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={tampilkanSandi}
+                  disabled={mengirim}
+                  onChange={(e) => setTampilkanSandi(e.target.checked)}
+                  className="h-4 w-4 cursor-pointer"
+                />
+                Tampilkan sandi
+              </label>
             </div>
-            {error && <p className="w-105 mt-3 text-sm text-[#b3261e]">{error}</p>}
+            {error && (
+              <p className="w-105 mt-3 text-sm text-[#b3261e]">{error}</p>
+            )}
             <div className="w-105 mt-3">
               <button
                 type="submit"

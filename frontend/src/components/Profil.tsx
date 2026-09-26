@@ -17,7 +17,7 @@ export default function Profil() {
         <div className="grid grid-cols-2 gap-12 max-[860px]:grid-cols-1">
           <div>
             <h3 className="mb-2.5 text-[22px] text-sawah">Visi</h3>
-            <p className="font-heading mb-6 text-[26px] leading-[1.25] text-sawah">
+            <p className="font-heading mb-6 text-[26px] leading-light text-sawah">
               Sidoharjo yang tertib, sejahtera, dan guyub dalam pelayanan.
             </p>
             <h3 className="mb-2.5 text-[22px] text-sawah">Misi</h3>

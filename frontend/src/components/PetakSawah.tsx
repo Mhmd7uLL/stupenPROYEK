@@ -9,7 +9,7 @@ export default function PetakSawah() {
   ];
   return (
     <svg
-      className="block h-auto w-full max-[860px]:max-w-[420px]"
+      className="block h-auto w-full max-[860px]:max-w-105"
       viewBox="0 0 400 300"
       role="img"
       aria-label="Ilustrasi petak sawah dan tambak"

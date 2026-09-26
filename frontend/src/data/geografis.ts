@@ -2,7 +2,7 @@ import type { BatasWilayah, FaktaGeografis, StatItem } from "../types/kelurahan"
 
 export const FAKTA_GEOGRAFIS: FaktaGeografis[] = [
   { label: "Luas wilayah", nilai: "2,14 km²" },
-  { label: "Ketinggian", nilai: "8 mdpl" },
+  { label: "Ketinggian", nilai: "±9 mdpl" },
   { label: "Jarak ke pusat kabupaten", nilai: "1,1 km" },
   { label: "Jumlah RT / RW", nilai: "21 RT / 6 RW" },
 ];
