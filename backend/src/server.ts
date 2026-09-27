@@ -73,6 +73,6 @@ app.use("/api/visi-misi", visiMisiRouter);
 app.use(rute404);
 app.use(penangananError);
 
-app.listen(PORT, () => {
-    console.log(`Server sedang berjalan di http://localhost:${PORT}`);
+app.listen(PORT, "0.0.0.0",() => {
+    console.log(`Server sedang berjalan di http://0.0.0.0:${PORT}`);
 });
