@@ -3,7 +3,8 @@ import pool from "./db/pool.js";
 import { batasUmum } from "./middleware/batasPermintaan.js";
 import { headerKeamanan, korsTerbatas } from "./middleware/keamanan.js";
 import { penangananError, rute404 } from "./middleware/penangananError.js";
-import { FOLDER_UNGGAH } from "./middleware/unggah.js";
+import { pastikanNamaBerkasAman } from "./middleware/unggah.js";
+import { urlPublikBerkas } from "./storage/supabase.js";
 import authRouter from "./routes/auth.js";
 import kabarRouter from "./routes/kabar.js";
 import unggahRouter from "./routes/unggah.js";
@@ -48,21 +49,18 @@ app.get("/api/health", async (req, res) => {
     res.json({ status: "ok" });
 });
 
-// Gambar hasil unggahan disajikan langsung dari disk.
-// nosniff + Content-Disposition: inline mencegah browser menebak-nebak tipe berkas.
-// Nama berkas berupa UUID yang tidak pernah dipakai ulang, jadi aman di-cache lama.
-app.use(
-    "/upload",
-    express.static(FOLDER_UNGGAH, {
-        index: false,
-        dotfiles: "deny",
-        setHeaders: (res) => {
-            res.setHeader("X-Content-Type-Options", "nosniff");
-            res.setHeader("Content-Disposition", "inline");
-            res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
-        },
-    })
-);
+app.get("/upload/:namaBerkas", (req, res) => {
+    const nama = pastikanNamaBerkasAman(
+        req.params.namaBerkas
+    );
+
+    res.setHeader(
+        "Cache-Control",
+        "public, max-age=31536000, immutable"
+    );
+
+    res.redirect(302, urlPublikBerkas(nama));
+});
 
 app.use("/api/auth", authRouter);
 app.use("/api/unggah", unggahRouter);

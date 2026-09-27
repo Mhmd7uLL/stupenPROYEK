@@ -1,98 +1,97 @@
 import { Router } from "express";
 import { wajibLogin } from "../middleware/autentikasi.js";
 import {
-    hapusBerkas,
-    MAKS_BERKAS_SEKALIGUS,
-    pastikanGambarAsli,
-    pastikanNamaBerkasAman,
-    UKURAN_MAKS_MB,
-    unggah,
+  hapusBerkas,
+  MAKS_BERKAS_SEKALIGUS,
+  pastikanNamaBerkasAman,
+  UKURAN_MAKS_MB,
+  unggah,
+  simpanBerkas,
 } from "../middleware/unggah.js";
 import { berkasSedangDipakai } from "../utils/berkas.js";
 import { KesalahanInput } from "../utils/kesalahan.js";
 
 const router = Router();
 
-// Semua endpoint di sini wajib login: unggahan hanya untuk admin
 router.use(wajibLogin);
 
-interface HasilUnggah {
-    url: string;
-    nama_berkas: string;
-    ukuran: number;
-    tipe: string;
-}
-
-function keHasil(berkas: Express.Multer.File): HasilUnggah {
-    return {
-        // Path relatif, bukan URL penuh, supaya tetap benar kalau domainnya pindah
-        url: `/upload/${berkas.filename}`,
-        nama_berkas: berkas.filename,
-        ukuran: berkas.size,
-        tipe: berkas.mimetype,
-    };
-}
-
-// POST /api/unggah  (field: gambar)
-// Balasannya dipakai sebagai nilai gambar_utama saat membuat kabar
+// POST /api/unggah
 router.post("/", unggah.single("gambar"), async (req, res) => {
-    if (!req.file) {
-        throw new KesalahanInput("Tidak ada berkas terkirim. Pakai field bernama 'gambar'.");
-    }
+  if (!req.file) {
+    throw new KesalahanInput(
+      "Tidak ada berkas terkirim. Pakai field bernama 'gambar'.",
+    );
+  }
 
-    await pastikanGambarAsli(req.file);
-    res.status(201).json(keHasil(req.file));
+  const hasil = await simpanBerkas(req.file);
+
+  res.status(201).json(hasil);
 });
 
-// POST /api/unggah/banyak  (field: gambar, maksimal 5 berkas)
-router.post("/banyak", unggah.array("gambar", MAKS_BERKAS_SEKALIGUS), async (req, res) => {
+// POST /api/unggah/banyak
+router.post(
+  "/banyak",
+  unggah.array("gambar", MAKS_BERKAS_SEKALIGUS),
+  async (req, res) => {
     const berkas = Array.isArray(req.files) ? req.files : [];
+
     if (berkas.length === 0) {
-        throw new KesalahanInput("Tidak ada berkas terkirim. Pakai field bernama 'gambar'.");
+      throw new KesalahanInput(
+        "Tidak ada berkas terkirim. Pakai field bernama 'gambar'.",
+      );
     }
+
+    const tersimpan: string[] = [];
 
     try {
-        for (const satu of berkas) {
-            await pastikanGambarAsli(satu);
-        }
-    } catch (err) {
-        // Kalau satu berkas ditolak, yang lain ikut dibersihkan supaya tidak
-        // ada berkas nyangkut tanpa pemilik
-        await Promise.all(berkas.map((satu) => hapusBerkas(satu.filename)));
-        throw err;
-    }
+      // Validasi + upload satu per satu.
+      const hasil = [];
 
-    res.status(201).json({ berkas: berkas.map(keHasil) });
-});
+      for (const satu of berkas) {
+        const disimpan = await simpanBerkas(satu);
+
+        tersimpan.push(disimpan.nama_berkas);
+        hasil.push(disimpan);
+      }
+
+      res.status(201).json({
+        berkas: hasil,
+      });
+    } catch (err) {
+      // Kalau upload ke-3 gagal setelah upload ke-1 dan ke-2
+      // berhasil, bersihkan yang sudah terlanjur masuk storage.
+      await Promise.allSettled(tersimpan.map((nama) => hapusBerkas(nama)));
+
+      throw err;
+    }
+  },
+);
 
 // DELETE /api/unggah/:namaBerkas
-// Dipakai saat admin mengganti gambar sebelum menyimpan, supaya berkas yang
-// batal dipakai tidak menumpuk di disk.
 router.delete("/:namaBerkas", async (req, res) => {
-    const nama = pastikanNamaBerkasAman(req.params.namaBerkas);
+  const nama = pastikanNamaBerkasAman(req.params.namaBerkas);
 
-    // Dulu rute ini menghapus apa saja yang namanya cocok, tanpa peduli berkas
-    // itu sedang terpasang di berita atau foto pejabat yang sudah tayang.
-    // Satu salah pencet cukup untuk mengosongkan gambar di halaman publik,
-    // dan barisnya tetap menunjuk ke berkas yang sudah tidak ada.
-    if (await berkasSedangDipakai(`/upload/${nama}`)) {
-        res.status(409).json({
-            pesan: "Berkas ini sedang dipakai berita atau struktur jabatan. Hapus dulu data yang memakainya.",
-        });
-        return;
-    }
+  if (await berkasSedangDipakai(`/upload/${nama}`)) {
+    res.status(409).json({
+      pesan:
+        "Berkas ini sedang dipakai berita atau struktur jabatan. Hapus dulu data yang memakainya.",
+    });
 
-    await hapusBerkas(nama);
-    res.status(204).send();
+    return;
+  }
+
+  await hapusBerkas(nama);
+
+  res.status(204).send();
 });
 
-// GET /api/unggah/batas -> dipakai frontend untuk menampilkan aturan sebelum memilih berkas
+// GET /api/unggah/batas
 router.get("/batas", (req, res) => {
-    res.json({
-        ukuran_maks_mb: UKURAN_MAKS_MB,
-        maks_berkas_sekaligus: MAKS_BERKAS_SEKALIGUS,
-        tipe_didukung: ["image/jpeg", "image/png", "image/webp", "image/gif"],
-    });
+  res.json({
+    ukuran_maks_mb: UKURAN_MAKS_MB,
+    maks_berkas_sekaligus: MAKS_BERKAS_SEKALIGUS,
+    tipe_didukung: ["image/jpeg", "image/png", "image/webp", "image/gif"],
+  });
 });
 
 export default router;
