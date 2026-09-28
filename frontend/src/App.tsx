@@ -10,7 +10,6 @@ import Profil from "./pages/Profil";
 import Geografis from "./pages/Geografis";
 import Struktur from "./pages/Struktur";
 import VisiMisi from "./pages/VisiMisi";
-import Pelayanan from "./pages/Pelayanan";
 import Login from "./pages/admin/Login";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminBerita from "./pages/admin/AdminBerita";
@@ -37,7 +36,6 @@ export default function App() {
         <Route path="/kondisiGeografis" element={<Geografis />} />
         <Route path="/struktur" element={<Struktur />} />
         <Route path="/visi-misi" element={<VisiMisi />} />
-        <Route path="/pelayanan" element={<Pelayanan />} />
         <Route path="/login" element={<Login />} />
 
         <Route

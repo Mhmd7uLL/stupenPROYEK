@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+/* import { useState, useMemo } from "react";
 import { LAYANAN } from "../data/layanan";
 
 export default function Layanan({ kata, setKata }: { kata: string; setKata: (v: string) => void }) {
@@ -60,4 +60,4 @@ export default function Layanan({ kata, setKata }: { kata: string; setKata: (v: 
       </div>
     </section>
   );
-}
+} */

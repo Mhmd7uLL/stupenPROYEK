@@ -35,22 +35,31 @@ export default function Login() {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-sawah">
-      <div className="flex flex-row h-150 shadow-lg">
-        <div className="w-75 h-full bg-abu rounded-l-xl flex flex-col items-center">
-          <img src={logo} className="w-30"></img>
-          <h1 className="font-bold text-white text-2xl">Kelurahan Sidoharjo</h1>
-          <p className="text-sm px-9 text-white">
-            Jl. Pahlawan, Kauman, Kel. Sidoharjo, Kec. Lamongan, Kab. Lamongan,
-            Jawa Timur<br></br>(62217)
-          </p>
+      <div className="flex flex-col bg-abu lg:flex-row h-150 shadow-lg mb-22 mt-1 lg:mb-0">
+        <div className="w-100 lg:w-75 h-full rounded-t-xl flex flex-col items-end lg:bg-abu">
+          <Link to="/">
+            <p className="flex bg-sawah hover:bg-tambak mr-3 mt-3 w-7 h-7 lg:hidden text-white justify-center rounded-4xl hover:cursor-pointer">
+              X
+            </p>
+          </Link>
+          <div className="flex flex-col items-center">
+            <img src={logo} className="w-30"></img>
+            <h1 className="font-bold text-white text-2xl">
+              Kelurahan Sidoharjo
+            </h1>
+            <p className="text-sm px-9 pb-5 text-white text-center">
+              Jl. Pahlawan, Kauman, Kel. Sidoharjo, Kec. Lamongan, Kab.
+              Lamongan, Jawa Timur<br></br>(62217)
+            </p>
+          </div>
         </div>
-        <div className="w-120 h-full bg-garis rounded-r-xl">
-          <div className="flex justify-between p-7">
-            <h1 className="text-3xl font-semibold text-tinta">
-              Memiliki akses admin?<br></br>Silahkan login di bawah
+        <div className="bg-abu max-[600px]:rounded-t-xl lg:w-120 lg:h-full bg-garis lg:rounded-r-xl">
+          <div className="flex justify-center lg:justify-between p-7">
+            <h1 className="text-2xl font-semibold text-tinta">
+              Silahkan login di bawah
             </h1>
             <Link to="/">
-              <p className="flex bg-sawah w-7 h-7 text-white justify-center items-center rounded-4xl hover:cursor-pointer">
+              <p className="hidden lg:flex hover:bg-tambak bg-sawah w-7 h-7 text-white justify-center items-center rounded-4xl hover:cursor-pointer">
                 X
               </p>
             </Link>
@@ -67,7 +76,7 @@ export default function Login() {
                 autoComplete="username"
                 disabled={mengirim}
                 onChange={(e) => setEmail(e.target.value)}
-                className="rounded-lg bg-white w-105 py-3 px-5 mb-3 border border-abu disabled:opacity-60"
+                className="rounded-lg bg-white w-90 lg:w-105 py-3 px-5 mb-3 border border-abu disabled:opacity-60"
               ></input>
             </div>
             <div className="flex flex-col font-medium">
@@ -78,7 +87,7 @@ export default function Login() {
                 autoComplete="current-password"
                 disabled={mengirim}
                 onChange={(e) => setSandi(e.target.value)}
-                className="rounded-lg bg-white w-105 py-3 px-5 border border-abu disabled:opacity-60"
+                className="rounded-lg bg-white w-90 lg:w-105 py-3 px-5 border border-abu disabled:opacity-60"
               ></input>
               <label className="mt-2 flex items-center gap-2 text-sm font-normal cursor-pointer">
                 <input
@@ -94,7 +103,7 @@ export default function Login() {
             {error && (
               <p className="w-105 mt-3 text-sm text-[#b3261e]">{error}</p>
             )}
-            <div className="w-105 mt-3">
+            <div className="mt-3 py-5 lg:pb-0">
               <button
                 type="submit"
                 disabled={mengirim}
