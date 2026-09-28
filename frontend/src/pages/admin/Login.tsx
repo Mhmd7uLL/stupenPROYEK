@@ -34,9 +34,9 @@ export default function Login() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-sawah">
-      <div className="flex flex-col bg-abu lg:flex-row h-150 shadow-lg mb-22 mt-1 lg:mb-0">
-        <div className="w-100 lg:w-75 h-full rounded-t-xl flex flex-col items-end lg:bg-abu">
+    <div className="flex min-h-screen justify-center items-center bg-sawah max-[600px]:items-start max-[600px]:py-8">
+      <div className="flex flex-col bg-abu shadow-lg max-[600px]:w-75 max-[600px]:h-auto lg:flex-row h-150 lg:mb-0">
+        <div className="flex flex-col items-end bg-abu rounded-t-xl lg:w-75 lg:h-full lg:roundedn-l-xl lg:rounded-tr-none">
           <Link to="/">
             <p className="flex bg-sawah hover:bg-tambak mr-3 mt-3 w-7 h-7 lg:hidden text-white justify-center rounded-4xl hover:cursor-pointer">
               X
@@ -53,7 +53,7 @@ export default function Login() {
             </p>
           </div>
         </div>
-        <div className="bg-abu max-[600px]:rounded-t-xl lg:w-120 lg:h-full bg-garis lg:rounded-r-xl">
+        <div className="bg-garis rounded-b-xl lg:w-120 lg:h-full lg:rounded-r-xl lg:rounded-bl-none">
           <div className="flex justify-center lg:justify-between p-7">
             <h1 className="text-2xl font-semibold text-tinta">
               Silahkan login di bawah
@@ -76,7 +76,7 @@ export default function Login() {
                 autoComplete="username"
                 disabled={mengirim}
                 onChange={(e) => setEmail(e.target.value)}
-                className="rounded-lg bg-white w-90 lg:w-105 py-3 px-5 mb-3 border border-abu disabled:opacity-60"
+                className="rounded-lg bg-white w-60 py-2 lg:w-105 lg:py-3 lg:px-5 mb-3 border border-abu disabled:opacity-60"
               ></input>
             </div>
             <div className="flex flex-col font-medium">
@@ -87,7 +87,7 @@ export default function Login() {
                 autoComplete="current-password"
                 disabled={mengirim}
                 onChange={(e) => setSandi(e.target.value)}
-                className="rounded-lg bg-white w-90 lg:w-105 py-3 px-5 border border-abu disabled:opacity-60"
+                className="rounded-lg bg-white w-60 py-2 lg:w-105 lg:py-3 lg:px-5 border border-abu disabled:opacity-60"
               ></input>
               <label className="mt-2 flex items-center gap-2 text-sm font-normal cursor-pointer">
                 <input
