@@ -21,13 +21,13 @@ export default function VisiMisi() {
   return (
     <main className="wrap py-18">
       <h1 className="font-heading mb-7 text-[clamp(28px,4vw,40px)] leading-[1.1] text-sawah">
-        Visi &amp; Misi
+        Visi &amp; Misi Kelurahan Sidoharjo
       </h1>
       <div className="max-w-[65ch]">
-        <h2 className="mb-2.5 text-[22px] text-sawah">Visi</h2>
+        <h2 className="mb-2.5 text-[25px] font-bold text-sawah">Visi</h2>
         {visiMisi.visi ? (
           pecahBaris(visiMisi.visi).map((paragraf, i) => (
-            <p key={i} className="font-medium text-lg mb-5">
+            <p key={i} className="font-medium text-justify text-lg mb-5">
               {paragraf}
             </p>
           ))
@@ -35,11 +35,11 @@ export default function VisiMisi() {
           <Keterangan teks={kosong} />
         )}
 
-        <h2 className="mb-2.5 text-[22px] text-sawah">Misi</h2>
+        <h2 className="mb-2.5 text-[25px] font-bold text-sawah">Misi</h2>
         {visiMisi.misi ? (
-          <ol className="m-0 list-decimal pl-5 text-abu font-medium">
+          <ol className="m-0 list-decimal text-justify pl-5 text-black font-medium">
             {pecahBaris(visiMisi.misi).map((butir, i) => (
-              <li key={i} className="mb-2">
+              <li key={i} className="mb-2 text-lg">
                 {butir}
               </li>
             ))}

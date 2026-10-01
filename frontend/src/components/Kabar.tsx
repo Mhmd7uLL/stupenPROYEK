@@ -91,7 +91,7 @@ function KartuKabar({ kabar: k }: { kabar: KabarRingkas }) {
     >
       {/* Kotak gambar diukur di pembungkusnya, bukan di <img>, supaya tinggi
           kartu sama baik gambarnya ada maupun tidak */}
-      <div className="aspect-[16/9] w-[240px] shrink-0 overflow-hidden rounded-lg bg-kabut max-[620px]:w-full">
+      <div className="aspect-video w-60 shrink-0 overflow-hidden rounded-lg bg-kabut max-[620px]:w-full">
         {k.gambar ? (
           <img src={urlPenuh(k.gambar)} alt="" className="h-full w-full object-cover" />
         ) : (
@@ -103,7 +103,7 @@ function KartuKabar({ kabar: k }: { kabar: KabarRingkas }) {
 
       <div className="flex min-w-0 flex-1 flex-col">
         <h3 className="m-0 line-clamp-2 text-[19px] leading-[1.3] font-bold text-tinta">{k.judul}</h3>
-        <p className="mt-1.5 mb-3 line-clamp-2 text-[15px] leading-[1.5] text-abu">{k.ringkas}</p>
+        <p className="mt-1.5 mb-3 line-clamp-2 text-[15px] leading-normal text-abu">{k.ringkas}</p>
 
         <div className="mt-auto flex flex-wrap items-center gap-x-5 gap-y-1.5 text-[13px] text-abu">
           <span className="flex items-center gap-1.5">

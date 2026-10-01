@@ -65,6 +65,7 @@ export default function Profil() {
             </div>
           ))}
         </div>
+        <p className="text-xs">Data ini bersifat sementara*</p>
       </section>
 
       <section aria-label="Visi dan misi">

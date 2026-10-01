@@ -9,7 +9,7 @@ export const IDENTITAS_KELURAHAN: FaktaGeografis[] = [
   { label: "Provinsi", nilai: "Jawa Timur" },
   { label: "Alamat", nilai: "Jl. Soekarno Hatta No. 01, Lamongan" },
   { label: "Kode Pos", nilai: "62217" },
-  { label: "Email", nilai: "sidoharjolmg@gmail.com" },
+  { label: "Email", nilai: "sidoharjo@lamongankab.go.id" },
   { label: "Luas Wilayah Administrasi", nilai: "2,14 km²" },
 ];
 

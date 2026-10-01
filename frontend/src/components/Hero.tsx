@@ -1,4 +1,4 @@
-import logoHero from "../assets/logo-pemkab-lmg.webp";
+import logoHero from "../assets/logo-pemkab-lmg.png";
 
 // Isi pita berjalan di bawah Hero. Tambah atau hapus pesan cukup di sini,
 // ulangan dan kecepatannya menyesuaikan sendiri.

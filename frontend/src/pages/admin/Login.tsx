@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import logo from "../../assets/logo.webp";
+import logo from "../../assets/logo.png";
 import { login } from "../../lib/auth";
 
 export default function Login() {
@@ -35,15 +35,15 @@ export default function Login() {
 
   return (
     <div className="flex min-h-screen justify-center items-center bg-sawah max-[600px]:items-start max-[600px]:py-8">
-      <div className="flex flex-col bg-abu shadow-lg max-[600px]:w-75 max-[600px]:h-auto lg:flex-row h-150 lg:mb-0">
-        <div className="flex flex-col items-end bg-abu rounded-t-xl lg:w-75 lg:h-full lg:roundedn-l-xl lg:rounded-tr-none">
+      <div className="flex flex-col rounded-xl bg-abu shadow-lg max-[600px]:w-75 max-[600px]:h-auto lg:flex-row h-150 lg:mb-0">
+        <div className="flex flex-col items-end bg-abu rounded-xl lg:w-75 lg:h-full lg:roundedn-l-xl lg:rounded-tr-none">
           <Link to="/">
             <p className="flex bg-sawah hover:bg-tambak mr-3 mt-3 w-7 h-7 lg:hidden text-white justify-center rounded-4xl hover:cursor-pointer">
               X
             </p>
           </Link>
           <div className="flex flex-col items-center">
-            <img src={logo} className="w-30"></img>
+            <img src={logo} className="w-30 h-33"></img>
             <h1 className="font-bold text-white text-2xl">
               Kelurahan Sidoharjo
             </h1>
@@ -53,7 +53,7 @@ export default function Login() {
             </p>
           </div>
         </div>
-        <div className="bg-garis rounded-b-xl lg:w-120 lg:h-full lg:rounded-r-xl lg:rounded-bl-none">
+        <div className="bg-garis rounded-xl lg:w-120 lg:h-full lg:rounded-r-xl lg:rounded-bl-none">
           <div className="flex justify-center lg:justify-between p-7">
             <h1 className="text-2xl font-semibold text-tinta">
               Silahkan login di bawah
